@@ -64,12 +64,9 @@ async function find(place) {
 
     if (url.ok == true && url.status != 400) {
         let place = await url.json();
+        // console.log(place);
         forecastToday(place.location, place.current);
         forecastTmrw(place.forecast.forecastday);
-        console.log(place);
-        // console.log(place.location);
-        // console.log(place.current);
-        // console.log(place.forecast.forecastday);
     }
 }
 
