@@ -9,21 +9,12 @@ let btn5 = document.getElementById('btn5');
 //globals
 let activeTab = btn1;
 
-//Switching pages
-btn5.addEventListener("click", function () {
-    contactPage.classList.replace('d-none', 'd-block')
-    homePage.classList.replace('d-block', 'd-none')
-});
-
-btn1.addEventListener("click", function () {
-    contactPage.classList.replace('d-block', 'd-none')
-    homePage.classList.replace('d-none', 'd-block')
-});
-
 //switching navbar tabs
 btn1.addEventListener("click", function () {
     activeTab.classList.remove('active');
     btn1.classList.add('active');
+    contactPage.classList.replace('d-block', 'd-none')
+    homePage.classList.replace('d-none', 'd-block')
     activeTab = btn1
 });
 btn2.addEventListener("click", function () {
@@ -44,6 +35,8 @@ btn4.addEventListener("click", function () {
 btn5.addEventListener("click", function () {
     activeTab.classList.remove('active');
     btn5.classList.add('active');
+    contactPage.classList.replace('d-none', 'd-block')
+    homePage.classList.replace('d-block', 'd-none')
     activeTab = btn5
 });
 
@@ -81,7 +74,17 @@ function forecastToday(a, t) {
             <div class="forecast-content" id="current">
             <div class="location">${a.name}</div>
             <div class="degree">
-                <div class="num">${t.temp_c} <sup class="fw-light">o</sup>C</div>
+            <div class="num clearfix">
+            <span class="d-block float-start" id="tempCValue">${t.temp_c}</span>
+            <span class="d-none float-start" id="tempFValue">${t.temp_f}</span>
+            <div class="fw-light float-end" onclick="changeTempF()" id="tempF">
+                <sup>o</sup>F
+            </div>
+            <span class="fw-light float-end">|</span>
+            <div class="fw-light fw-bold float-end ms-4" onclick="changeTempC()" id="tempC">
+                <sup>o</sup>C
+            </div> 
+            </div>
                 <div class="forecast-icon">
                     <img src="https:${t.condition.icon}" alt="" width=150>
                 </div>
@@ -92,7 +95,7 @@ function forecastToday(a, t) {
             <span class="me-3"><i class="fa-solid fa-wind me-1 fa-lg"></i> ${t.wind_kph} km/h</span>
             <span class="me-3"><i class="fa-regular fa-compass me-1 fa-lg"></i> ${t.wind_dir}</span>
             </div>
-        </div>`;
+            </div>`;
         document.getElementById("forecast").innerHTML = box
     }
 }
@@ -118,3 +121,20 @@ function forecastTmrw(a) {
 }
 
 find("alexandria")
+
+
+
+// onclick
+function changeTempF() {
+    tempF.classList.toggle('fw-bold');
+    tempC.classList.toggle('fw-bold');
+    tempFValue.classList.toggle('d-none');
+    tempCValue.classList.toggle('d-none');
+}
+function changeTempC() {
+    tempF.classList.toggle('fw-bold');
+    tempC.classList.toggle('fw-bold');
+    tempCValue.classList.toggle('d-none');
+    tempFValue.classList.toggle('d-none');
+}
+

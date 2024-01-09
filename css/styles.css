@@ -25,10 +25,6 @@ a{
     margin-bottom: 50px;
     transition: all 0.3s ease-in-out;
 }
-
-/* .forecast-container .forecast {
-    width: 30%;
-} */
 .forecast-container .middle-forecast{
     background-color: #262936;
     border-left: 1px solid #3f3f3f;
@@ -142,4 +138,7 @@ form input, form textarea, form select {
     right: 5px;
     top: 5px;
     bottom: 5px;
+}
+#tempC, #tempF{
+    cursor: pointer;
 }
